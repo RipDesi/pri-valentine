@@ -4,246 +4,238 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For Pri 💜</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins', sans-serif;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
 
 body{
-    background: radial-gradient(circle at top,#1a0026,#000);
-    color:white;
-    overflow-x:hidden;
+background:linear-gradient(180deg,#0a0014,#19002a,#000);
+color:white;
+overflow-x:hidden;
+scroll-behavior:smooth;
 }
 
-canvas{
-    position:fixed;
-    top:0;
-    left:0;
-    z-index:-1;
+section{
+min-height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+padding:60px 20px;
+text-align:center;
+position:relative;
 }
 
-.intro{
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    flex-direction:column;
-    text-align:center;
-    background:black;
-    transition:1.5s ease;
+h1{font-size:3rem;margin-bottom:20px;}
+h2{margin-bottom:20px;}
+
+.btn{
+margin-top:30px;
+padding:15px 35px;
+border-radius:40px;
+border:1px solid rgba(255,255,255,0.3);
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(8px);
+cursor:pointer;
+transition:.3s;
+}
+.btn:hover{
+background:rgba(255,255,255,0.2);
+transform:scale(1.05);
 }
 
-.intro h1{
-    font-size:3rem;
-    letter-spacing:3px;
-    opacity:0.9;
+.fade-in{
+opacity:0;
+transform:translateY(40px);
+transition:1.2s ease;
+}
+.show{
+opacity:1;
+transform:translateY(0);
 }
 
-.enter-btn{
-    margin-top:30px;
-    padding:15px 40px;
-    border-radius:40px;
-    border:1px solid rgba(255,255,255,0.3);
-    background:rgba(255,255,255,0.05);
-    backdrop-filter:blur(8px);
-    cursor:pointer;
-    transition:0.3s;
+.story{
+max-width:700px;
+line-height:1.8;
+font-size:1.2rem;
 }
 
-.enter-btn:hover{
-    background:rgba(255,255,255,0.2);
+.gallery{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:30px;
+margin-top:40px;
 }
 
-.content{
-    opacity:0;
-    transition:2s ease;
-    padding:100px 20px;
-    text-align:center;
+.frame{
+width:220px;
+padding:15px;
+background:rgba(255,255,255,0.05);
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,0.6);
+transition:.6s;
+opacity:0;
+transform:translateY(40px);
 }
 
-.memory{
-    max-width:700px;
-    margin:auto;
-    font-size:1.3rem;
-    line-height:1.8;
-    min-height:120px;
+.frame img{
+width:100%;
+height:260px;
+object-fit:cover;
+border-radius:15px;
 }
 
-.slideshow{
-    margin-top:60px;
+.frame.show{
+opacity:1;
+transform:translateY(0);
 }
 
-.slideshow img{
-    width:300px;
-    height:380px;
-    object-fit:cover;
-    border-radius:25px;
-    box-shadow:0 20px 50px rgba(0,0,0,0.7);
-    transition:opacity 1s ease;
-}
-
-.glass{
-    margin-top:50px;
-    padding:15px 40px;
-    border-radius:40px;
-    background:rgba(255,255,255,0.08);
-    backdrop-filter:blur(10px);
-    border:1px solid rgba(255,255,255,0.2);
-    cursor:pointer;
-    transition:0.3s;
-}
-
-.glass:hover{
-    background:rgba(255,255,255,0.2);
-    transform:scale(1.05);
+.letter{
+max-width:600px;
+background:rgba(255,255,255,0.05);
+padding:40px;
+border-radius:25px;
+line-height:1.8;
+box-shadow:0 20px 40px rgba(0,0,0,0.6);
 }
 
 footer{
-    margin-top:80px;
-    opacity:0.6;
+padding:60px;
+opacity:.7;
 }
 
-.modal{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.8);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    opacity:0;
-    pointer-events:none;
-    transition:0.5s;
-}
-
-.modal-content{
-    background:#1a0026;
-    padding:40px;
-    border-radius:20px;
-    text-align:center;
-    max-width:400px;
-}
-
-.show{
-    opacity:1;
-    pointer-events:auto;
+canvas{
+position:fixed;
+top:0;
+left:0;
+z-index:-1;
 }
 </style>
 </head>
+
 <body>
 
 <canvas id="stars"></canvas>
 
-<div class="intro" id="intro">
-    <h1>Pri 💜</h1>
-    <div class="enter-btn" onclick="enterSite()">Tap To Enter</div>
+<!-- PHASE 1 -->
+<section>
+<h1 class="fade-in">Pri 💜</h1>
+<p class="story fade-in">
+Some moments don't just pass...
+They stay.
+That night on call —
+When we said "I like you"
+for the first time.
+Everything changed.
+</p>
+<div class="btn fade-in" onclick="scrollNext()">Continue</div>
+</section>
+
+<!-- PHASE 2 -->
+<section>
+<h2 class="fade-in">The Beginning of Us ✨</h2>
+<p class="story fade-in">
+Your voice was soft.
+The silence was loud.
+And in that silence,
+I realised something —
+You weren’t just someone special.
+You were home.
+</p>
+</section>
+
+<!-- PHASE 3 GALLERY -->
+<section>
+<h2>My Favourite Girl 💜</h2>
+<div class="gallery">
+<div class="frame"><img src="pri1.jpg"></div>
+<div class="frame"><img src="pri2.jpg"></div>
+<div class="frame"><img src="pri3.jpg"></div>
+<div class="frame"><img src="pri4.jpg"></div>
 </div>
+</section>
 
-<div class="content" id="content">
-    <div class="memory" id="typedText"></div>
+<!-- PHASE 4 LETTER -->
+<section>
+<h2>A Letter To You 💌</h2>
+<div class="letter fade-in">
+Pri,  
+You are my calm in chaos.  
+My safest place.  
+My favourite notification.  
 
-    <div class="slideshow">
-        <img id="slide" src="pri1.jpg">
-    </div>
+No matter how life moves,
+I want it to move with you.
 
-    <div class="glass" onclick="openModal()">Stay Forever With Me 💍</div>
+Through laughs.
+Through silence.
+Through everything.
 
-    <footer>
-        I love you more &lt;3  
-        — Vaibhav
-    </footer>
+And one truth remains —
+<br><br>
+<strong>I love you more &lt;3</strong>
+<br><br>
+— Vaibhav 💜
 </div>
+</section>
 
-<div class="modal" id="modal">
-    <div class="modal-content">
-        <h2>You’re My Forever 💜</h2>
-        <p>No matter what, I choose you. Every time.</p>
-        <div class="glass" onclick="closeModal()">Close</div>
-    </div>
-</div>
+<!-- PHASE 5 -->
+<section>
+<h2>Stay With Me Forever? 💍</h2>
+<div class="btn" onclick="forever()">Yes. Always.</div>
+<footer>
+Made with 💜 | BTS energy forever
+</footer>
+</section>
 
 <audio id="music" loop>
 <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6d3f9f6f6b.mp3?filename=romantic-background-112191.mp3">
 </audio>
 
 <script>
-function enterSite(){
-    document.getElementById("intro").style.opacity="0";
-    setTimeout(()=>{
-        document.getElementById("intro").style.display="none";
-        document.getElementById("content").style.opacity="1";
-    },1500);
-    document.getElementById("music").play();
-    typeWriter();
+document.querySelectorAll('.fade-in').forEach(el=>{
+setTimeout(()=>el.classList.add('show'),500);
+});
+
+document.querySelectorAll('.frame').forEach((el,i)=>{
+setTimeout(()=>el.classList.add('show'),800+i*300);
+});
+
+function scrollNext(){
+window.scrollBy({top:window.innerHeight,behavior:'smooth'});
+document.getElementById("music").play();
 }
 
-function openModal(){
-    document.getElementById("modal").classList.add("show");
+function forever(){
+alert("You are my forever Pri 💜 I love you more <3");
 }
 
-function closeModal(){
-    document.getElementById("modal").classList.remove("show");
-}
-
-// Typewriter effect
-const text = `That night... 
-When we said "I like you" for the first time.
-It changed everything.
-And since then — I love you more <3`;
-let i=0;
-function typeWriter(){
-    if(i<text.length){
-        document.getElementById("typedText").innerHTML += text.charAt(i);
-        i++;
-        setTimeout(typeWriter,40);
-    }
-}
-
-// Slideshow
-const images=["pri1.jpg","pri2.jpg","pri3.jpg","pri4.jpg"];
-let index=0;
-setInterval(()=>{
-    index=(index+1)%images.length;
-    document.getElementById("slide").style.opacity="0";
-    setTimeout(()=>{
-        document.getElementById("slide").src=images[index];
-        document.getElementById("slide").style.opacity="1";
-    },500);
-},3500);
-
-// Star particles
+// stars
 const canvas=document.getElementById("stars");
 const ctx=canvas.getContext("2d");
 canvas.width=window.innerWidth;
 canvas.height=window.innerHeight;
 let stars=[];
-for(let i=0;i<100;i++){
-    stars.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*2});
+for(let i=0;i<120;i++){
+stars.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*2});
 }
-function drawStars(){
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    ctx.fillStyle="white";
-    stars.forEach(s=>{
-        ctx.beginPath();
-        ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
-        ctx.fill();
-        s.y+=0.2;
-        if(s.y>canvas.height) s.y=0;
-    });
-    requestAnimationFrame(drawStars);
+function draw(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+ctx.fillStyle="white";
+stars.forEach(s=>{
+ctx.beginPath();
+ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+ctx.fill();
+s.y+=0.3;
+if(s.y>canvas.height)s.y=0;
+});
+requestAnimationFrame(draw);
 }
-drawStars();
+draw();
 </script>
 
 </body>
 </html>
-
 
