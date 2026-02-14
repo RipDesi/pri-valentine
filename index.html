@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Pri💓</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    color: white;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+h1 {
+    font-size: 3rem;
+    margin-top: 80px;
+    animation: fadeIn 2s ease-in-out;
+}
+
+p {
+    font-size: 1.3rem;
+    margin: 15px 30px;
+    animation: fadeIn 3s ease-in-out;
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 30px;
+    background-color: white;
+    color: #ff4e8b;
+    cursor: pointer;
+    transition: 0.3s;
+    margin: 15px;
+}
+
+button:hover {
+    transform: scale(1.1);
+    background-color: #ffe6f0;
+}
+
+#secret {
+    display: none;
+    font-size: 1.5rem;
+    margin-top: 20px;
+}
+
+.slideshow {
+    margin-top: 40px;
+}
+
+.slideshow img {
+    width: 250px;
+    height: 300px;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+    display: none;
+}
+
+.heart {
+    position: fixed;
+    top: -10px;
+    font-size: 20px;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh);
+    }
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+</style>
+</head>
+
+<body>
+
+<h1>Happy Valentine's Day Pri💓</h1>
+
+<p>
+That night… when we were on call and said  
+"I like you" for the first time 🥺  
+That moment lives in my heart forever.
+</p>
+
+<p>
+From that day till today,  
+one thing never changed…
+</p>
+
+<h2>I love you more&lt;3</h2>
+
+<button onclick="showSecret()">Click Here Pri 💌</button>
+
+<div id="secret">
+You are my safest place.  
+My favourite notification.  
+My comfort.  
+My forever.
+
+And I promise —  
+No matter what,  
+I’ll always choose you.
+
+– Vaibhav ❤️
+</div>
+
+<div class="slideshow">
+    <img src="pri1.jpg">
+    <img src="pri2.jpg">
+    <img src="pri3.jpg">
+    <img src="pri4.jpg">
+</div>
+
+<button onclick="forever()">Will you stay forever with me? 💍</button>
+
+<audio autoplay loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6d3f9f6f6b.mp3?filename=romantic-background-112191.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+function showSecret() {
+    document.getElementById("secret").style.display = "block";
+}
+
+function forever() {
+    alert("You are stuck with me forever Pri 💓 I love you more<3");
+}
+
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "💜";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 5000);
+}
+
+setInterval(createHeart, 300);
+
+// Slideshow
+let slideIndex = 0;
+const slides = document.querySelectorAll(".slideshow img");
+
+function showSlides() {
+    slides.forEach(img => img.style.display = "none");
+    slideIndex++;
+    if (slideIndex > slides.length) { slideIndex = 1 }
+    slides[slideIndex - 1].style.display = "block";
+    setTimeout(showSlides, 2500);
+}
+
+showSlides();
+</script>
+
+</body>
+</html>
