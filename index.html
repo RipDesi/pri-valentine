@@ -3,168 +3,247 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For Pri💓</title>
+<title>For Pri 💜</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
-body {
-    margin: 0;
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(135deg, #ff758c, #ff7eb3);
-    color: white;
-    text-align: center;
-    overflow-x: hidden;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins', sans-serif;
 }
 
-h1 {
-    font-size: 3rem;
-    margin-top: 80px;
-    animation: fadeIn 2s ease-in-out;
+body{
+    background: radial-gradient(circle at top,#1a0026,#000);
+    color:white;
+    overflow-x:hidden;
 }
 
-p {
-    font-size: 1.3rem;
-    margin: 15px 30px;
-    animation: fadeIn 3s ease-in-out;
+canvas{
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:-1;
 }
 
-button {
-    padding: 15px 30px;
-    font-size: 1.1rem;
-    border: none;
-    border-radius: 30px;
-    background-color: white;
-    color: #ff4e8b;
-    cursor: pointer;
-    transition: 0.3s;
-    margin: 15px;
+.intro{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    text-align:center;
+    background:black;
+    transition:1.5s ease;
 }
 
-button:hover {
-    transform: scale(1.1);
-    background-color: #ffe6f0;
+.intro h1{
+    font-size:3rem;
+    letter-spacing:3px;
+    opacity:0.9;
 }
 
-#secret {
-    display: none;
-    font-size: 1.5rem;
-    margin-top: 20px;
+.enter-btn{
+    margin-top:30px;
+    padding:15px 40px;
+    border-radius:40px;
+    border:1px solid rgba(255,255,255,0.3);
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(8px);
+    cursor:pointer;
+    transition:0.3s;
 }
 
-.slideshow {
-    margin-top: 40px;
+.enter-btn:hover{
+    background:rgba(255,255,255,0.2);
 }
 
-.slideshow img {
-    width: 250px;
-    height: 300px;
-    border-radius: 20px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
-    display: none;
+.content{
+    opacity:0;
+    transition:2s ease;
+    padding:100px 20px;
+    text-align:center;
 }
 
-.heart {
-    position: fixed;
-    top: -10px;
-    font-size: 20px;
-    animation: fall linear forwards;
+.memory{
+    max-width:700px;
+    margin:auto;
+    font-size:1.3rem;
+    line-height:1.8;
+    min-height:120px;
 }
 
-@keyframes fall {
-    to {
-        transform: translateY(100vh);
-    }
+.slideshow{
+    margin-top:60px;
 }
 
-@keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity: 1;}
+.slideshow img{
+    width:300px;
+    height:380px;
+    object-fit:cover;
+    border-radius:25px;
+    box-shadow:0 20px 50px rgba(0,0,0,0.7);
+    transition:opacity 1s ease;
+}
+
+.glass{
+    margin-top:50px;
+    padding:15px 40px;
+    border-radius:40px;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,0.2);
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.glass:hover{
+    background:rgba(255,255,255,0.2);
+    transform:scale(1.05);
+}
+
+footer{
+    margin-top:80px;
+    opacity:0.6;
+}
+
+.modal{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.8);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    opacity:0;
+    pointer-events:none;
+    transition:0.5s;
+}
+
+.modal-content{
+    background:#1a0026;
+    padding:40px;
+    border-radius:20px;
+    text-align:center;
+    max-width:400px;
+}
+
+.show{
+    opacity:1;
+    pointer-events:auto;
 }
 </style>
 </head>
-
 <body>
 
-<h1>Happy Valentine's Day Pri💓</h1>
+<canvas id="stars"></canvas>
 
-<p>
-That night… when we were on call and said  
-"I like you" for the first time 🥺  
-That moment lives in my heart forever.
-</p>
-
-<p>
-From that day till today,  
-one thing never changed…
-</p>
-
-<h2>I love you more&lt;3</h2>
-
-<button onclick="showSecret()">Click Here Pri 💌</button>
-
-<div id="secret">
-You are my safest place.  
-My favourite notification.  
-My comfort.  
-My forever.
-
-And I promise —  
-No matter what,  
-I’ll always choose you.
-
-– Vaibhav ❤️
+<div class="intro" id="intro">
+    <h1>Pri 💜</h1>
+    <div class="enter-btn" onclick="enterSite()">Tap To Enter</div>
 </div>
 
-<div class="slideshow">
-    <img src="pri1.jpg">
-    <img src="pri2.jpg">
-    <img src="pri3.jpg">
-    <img src="pri4.jpg">
+<div class="content" id="content">
+    <div class="memory" id="typedText"></div>
+
+    <div class="slideshow">
+        <img id="slide" src="pri1.jpg">
+    </div>
+
+    <div class="glass" onclick="openModal()">Stay Forever With Me 💍</div>
+
+    <footer>
+        I love you more &lt;3  
+        — Vaibhav
+    </footer>
 </div>
 
-<button onclick="forever()">Will you stay forever with me? 💍</button>
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <h2>You’re My Forever 💜</h2>
+        <p>No matter what, I choose you. Every time.</p>
+        <div class="glass" onclick="closeModal()">Close</div>
+    </div>
+</div>
 
-<audio autoplay loop>
-    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6d3f9f6f6b.mp3?filename=romantic-background-112191.mp3" type="audio/mpeg">
+<audio id="music" loop>
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6d3f9f6f6b.mp3?filename=romantic-background-112191.mp3">
 </audio>
 
 <script>
-function showSecret() {
-    document.getElementById("secret").style.display = "block";
+function enterSite(){
+    document.getElementById("intro").style.opacity="0";
+    setTimeout(()=>{
+        document.getElementById("intro").style.display="none";
+        document.getElementById("content").style.opacity="1";
+    },1500);
+    document.getElementById("music").play();
+    typeWriter();
 }
 
-function forever() {
-    alert("You are stuck with me forever Pri 💓 I love you more<3");
+function openModal(){
+    document.getElementById("modal").classList.add("show");
 }
 
-function createHeart() {
-    const heart = document.createElement("div");
-    heart.classList.add("heart");
-    heart.innerHTML = "💜";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
-    document.body.appendChild(heart);
-
-    setTimeout(() => {
-        heart.remove();
-    }, 5000);
+function closeModal(){
+    document.getElementById("modal").classList.remove("show");
 }
 
-setInterval(createHeart, 300);
+// Typewriter effect
+const text = `That night... 
+When we said "I like you" for the first time.
+It changed everything.
+And since then — I love you more <3`;
+let i=0;
+function typeWriter(){
+    if(i<text.length){
+        document.getElementById("typedText").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter,40);
+    }
+}
 
 // Slideshow
-let slideIndex = 0;
-const slides = document.querySelectorAll(".slideshow img");
+const images=["pri1.jpg","pri2.jpg","pri3.jpg","pri4.jpg"];
+let index=0;
+setInterval(()=>{
+    index=(index+1)%images.length;
+    document.getElementById("slide").style.opacity="0";
+    setTimeout(()=>{
+        document.getElementById("slide").src=images[index];
+        document.getElementById("slide").style.opacity="1";
+    },500);
+},3500);
 
-function showSlides() {
-    slides.forEach(img => img.style.display = "none");
-    slideIndex++;
-    if (slideIndex > slides.length) { slideIndex = 1 }
-    slides[slideIndex - 1].style.display = "block";
-    setTimeout(showSlides, 2500);
+// Star particles
+const canvas=document.getElementById("stars");
+const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+let stars=[];
+for(let i=0;i<100;i++){
+    stars.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*2});
 }
-
-showSlides();
+function drawStars(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle="white";
+    stars.forEach(s=>{
+        ctx.beginPath();
+        ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+        ctx.fill();
+        s.y+=0.2;
+        if(s.y>canvas.height) s.y=0;
+    });
+    requestAnimationFrame(drawStars);
+}
+drawStars();
 </script>
 
 </body>
 </html>
+
+
